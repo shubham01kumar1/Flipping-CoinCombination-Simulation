@@ -20,7 +20,7 @@ dict[TTT]=0
 
 for((i=0;i<100;i++))
 do
-	simulate=$(( RANDOM % 4 ))
+	simulate=$(( RANDOM % 8 ))
 	case $simulate in
 		1)
 			dict[THT]=$((${dict[THT]}+1));;
