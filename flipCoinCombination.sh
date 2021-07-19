@@ -1,21 +1,21 @@
 #!/bin/bash -x
-
+declare -A dict
 HEAD=1
 TAIL=0
 
-headWins=0
-tailWins=0
-for((i=0;i<20;i++))
+dict[headWins]=0
+dict[tailWins]=0
+for((i=0;i<50;i++))
 do
 	simulate=$((RANDOM%2))
 	if [ $simulate -eq $HEAD ]
 	then
-		((headWins++))
+		dict[headWins]=$((${dict[headWins]}+1))
 	else
-		((tailWins++))
+		dict[tailWins]=$((${dict[tailWins]}+1))
 fi
 done
-total_Simu=$((headWins + tailWins))
-percentage_OfHead=$(echo $headWins $total_Simu | awk '{print $1/$2 *100}')
+total_Simu=$(( dict["headWins"] + dict[tailWins] ))
+percentage_OfHead=$(echo ${dict["headWins"]} $total_Simu | awk '{print $1/$2 *100}')
 
-percentage_OfTail=$(echo $tailWins $total_Simu | awk '{print $1/$2 *100}')
+percentage_OfTail=$(echo ${dict["tailWins"]} $total_Simu | awk '{print $1/$2 *100}')
